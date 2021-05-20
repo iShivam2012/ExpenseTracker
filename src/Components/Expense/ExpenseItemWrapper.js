@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ExpenseItem from "./ExpenseItem";
 import NewExpense from "../NewExpense/NewExpense";
 import ExpenseFilter from "./ExpenseFilter";
+import ExpenseChart from "./ExpenseChart";
 
 const dummy_expenses = [
   {
@@ -65,15 +66,18 @@ export const ExpenseItemWrapper = () => {
         {FilteredExpenses.length === 0 ? (
           <p>No Records Found</p>
         ) : (
-          FilteredExpenses.map((expense) => {
-            return (
-              <ExpenseItem
-                date={expense.date}
-                desc={expense.desc}
-                price={expense.price}
-              />
-            );
-          })
+          <div>
+            <ExpenseChart expenses={FilteredExpenses} />
+            {FilteredExpenses.map((expense) => {
+              return (
+                <ExpenseItem
+                  date={expense.date}
+                  desc={expense.desc}
+                  price={expense.price}
+                />
+              );
+            })}
+          </div>
         )}
 
         {/* <ExpenseItem
